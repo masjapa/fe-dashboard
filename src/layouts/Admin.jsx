@@ -21,12 +21,12 @@ const Sidebar = ({ isActive, setSidebarOpen }) => (
     </div>
     <nav className="flex-1 text-left text-gray-500 text-sm">
       <ul>
-        <li className={`p-4 ${isActive('/')}`}>
+        <li className={`p-4 m-4 ${isActive('/')}`}>
           <Link to="/" className='flex gap-2' onClick={() => setSidebarOpen(false)}>
             <IoGrid className="h-4 w-4" />Data Tables
           </Link>
         </li>
-        <li className={`p-4 ${isActive('/another-page')}`}>
+        <li className={`p-4 m-4 ${isActive('/another-page')}`}>
           <Link to="/another-page" className='flex gap-2' onClick={() => setSidebarOpen(false)}>
             <RiHome5Fill className='h-4 w-4' />Another Page
           </Link>
@@ -94,12 +94,12 @@ const AdminLayout = ({ children }) => {
         </div>
         <nav className="flex-1 text-left text-gray-500 text-sm">
           <ul>
-            <li className={`p-4 ${isActive('/')}`}>
+            <li className={`p-4 m-4 ${isActive('/')}`}>
               <Link to="/" className='flex gap-2'>
                 <IoGrid className="h-4 w-4" />Data Tables
               </Link>
             </li>
-            <li className={`p-4 ${isActive('/another-page')}`}>
+            <li className={`p-4 m-4 ${isActive('/another-page')}`}>
               <Link to="/another-page" className='flex gap-2'>
                 <RiHome5Fill className='h-4 w-4' />Another Page
               </Link>
@@ -119,41 +119,37 @@ const AdminLayout = ({ children }) => {
           <div className="text-xl font-semibold">Admin Panel</div>
         </header>
         <main className="flex-1 bg-[#F5F7FD] p-8 overflow-auto">
-          {
-            location.pathname === '/another-page' ? (
-              <></>
-            ) : (
-              <nav className="bg-gray-100 bg-opacity-10 backdrop-filter backdrop-blur-sm w-8/12 lg:w-9/12 fixed z-10">
-                <div className="px-4">
-                  <div className="flex justify-between items-center py-4">
-                    <div>
-                      <p className='text-sm'>Pages / Data Tables</p>
-                      <h1 className="hidden lg:block text-[30px] font-bold text-gray-800">Data Tables</h1>
-                    </div>
-    
-                    <div className='flex gap-2 bg-white rounded-full p-2 justify-between'>
-                      <div className="relative flex items-center">
-                        <input
-                          type="text"
-                          placeholder="Search..."
-                          value={searchTerm}
-                          onChange={handleSearch}
-                          className="bg-[#F5F7FD] backdrop-blur-lg rounded-full py-2 pl-10 pr-4 w-full focus:outline-none focus:ring-2 focus:ring-blue-400 text-sm"
-                        />
-                        <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                          <IoIosSearch className="text-gray-600" />
-                        </div>
-                      </div>
-                      <ProfileDropdown 
-                        isProfileOpen={isProfileOpen} 
-                        toggleProfileDropdown={toggleProfileDropdown} 
+          {location.pathname !== '/another-page' && (
+            <nav className="bg-gray-100 bg-opacity-10 backdrop-filter backdrop-blur-sm md:w-8/12 lg:w-9/12 fixed z-10">
+              <div className="px-4">
+                <div className="flex justify-between items-center py-4">
+                  <div>
+                    <p className='text-sm'>Pages / Data Tables</p>
+                    <h1 className="hidden lg:block text-[30px] font-bold text-gray-800">Data Tables</h1>
+                  </div>
+
+                  <div className='flex gap-2 bg-white rounded-full p-2 justify-between'>
+                    <div className="relative flex items-center">
+                      <input
+                        type="text"
+                        placeholder="Search..."
+                        value={searchTerm}
+                        onChange={handleSearch}
+                        className="bg-[#F5F7FD] backdrop-blur-lg rounded-full py-2 pl-10 pr-4 w-full focus:outline-none focus:ring-2 focus:ring-blue-400 text-sm"
                       />
+                      <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                        <IoIosSearch className="text-gray-600" />
+                      </div>
                     </div>
+                    <ProfileDropdown 
+                      isProfileOpen={isProfileOpen} 
+                      toggleProfileDropdown={toggleProfileDropdown} 
+                    />
                   </div>
                 </div>
-              </nav>
-            )
-          }
+              </div>
+            </nav>
+          )}
           {children}
         </main>
       </div>

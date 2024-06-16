@@ -20,5 +20,9 @@ Install with npm
 - Filter Data by Name ✅
 - Responsive ✅
 
+## Link Hosting
+```bash
+https://fe-dashboard-taupe.vercel.app/
+```
 
-# Ariq Dary Prayogo
+## Ariq Dary Prayogo
